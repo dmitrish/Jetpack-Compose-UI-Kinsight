@@ -9,6 +9,8 @@ import androidx.ui.core.Clip
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.VerticalScroller
+import androidx.ui.foundation.gestures.DragDirection
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
@@ -31,11 +33,45 @@ fun ideasScreen() {
 
     MaterialTheme {
         val ideas = +observe(ideasViewModel.ideas)
-        Column {
-            ideas?.forEach { idea ->
-                HeaderRow(idea)
-                BodyRow(idea)
-                BodyRow2(idea)
+        //Column{
+            Padding(EdgeInsets(-4.dp, 20.dp, 16.dp, 10.dp)) {
+                FlexRow() {
+                    flexible(0.2f) {
+                        Container(
+                            modifier = Height(33.dp),
+                            padding = EdgeInsets(0.dp, 3.dp, 0.dp, 0.dp)
+                        ) {
+                            Clip(shape = RoundedCornerShape(30.dp)) {
+                                VectorImage(id = R.drawable.ic_fish_monogram)
+                            }
+                        }
+
+                    }
+                    expanded(1f) {
+
+                        Text(
+                            text = "                       My Team Ideas",
+                            style = TextStyle(color = Color.Yellow)
+                        )
+                    }
+
+                }
+
+            }
+
+       // }
+       // HeightSpacer(height = 10.dp)
+        VerticalScroller {
+            Padding(EdgeInsets(10.dp, 37.dp, 16.dp, 10.dp)) {
+                Column {
+
+                    ideas?.forEach { idea ->
+                        HeaderRow(idea)
+                        BodyRow(idea)
+                        BodyRow2(idea)
+                    }
+
+                }
             }
         }
     }
@@ -107,7 +143,7 @@ fun BodyRow2(idea: IdeaModel) {
 }
 @Composable
 fun HeaderRow(idea: IdeaModel) {
-    Padding(EdgeInsets(16.dp, 5.dp, 0.dp, 0.dp)) {
+    Padding(EdgeInsets(16.dp, 15.dp, 0.dp, 0.dp)) {
         Text(text = "${idea.securityTicker}",
             style = TextStyle(color = Color.White) )
     }

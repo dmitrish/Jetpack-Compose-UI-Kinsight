@@ -34,7 +34,7 @@ fun WelcomeScreen( changeScreen:  ()-> Unit) {
     }
     Column() {
         Align(Alignment.Center) {
-            Padding(top = 300.dp) {
+            Padding(top = 350.dp) {
                 /* Text(
                      text = "Happy Alpha Fishing",
                      style = TextStyle(color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
