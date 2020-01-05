@@ -17,6 +17,7 @@ import androidx.ui.res.imageResource
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.ds.jetpackcomposekinsight.supportviews.VectorImage
+import com.ds.jetpackcomposekinsight.utils.getRoundedValue
 import com.ds.jetpackcomposekinsight.viewmodels.IdeasViewModel
 import com.kinsight.kinsightmultiplatform.IdeaModelLogicDecorator
 import com.kinsight.kinsightmultiplatform.models.IdeaModel
@@ -44,6 +45,8 @@ fun getFishImageForAlpha(alpha: Double) : Int {
     return when {
         alpha >= 4 -> R.drawable.ic_fish_green
         alpha >= 3 -> R.drawable.ic_fish_yellow
+        alpha >= 1 -> R.drawable.ic_fish_pale_yellow
+        alpha < 1 -> R.drawable.ic_fish_superhot
 
         else -> R.drawable.ic_fish_green
     }
@@ -70,7 +73,7 @@ fun BodyRow(idea: IdeaModel) {
                     }
                 }
                 Text(
-                    text = "${ideDecor.getDisplayValueForAlpha()}",
+                    text = "${getRoundedValue(idea.alpha)}",
                     style = TextStyle(color = Color.White)
                 )
             }
@@ -92,15 +95,9 @@ fun BodyRow2(idea: IdeaModel) {
 
             }
             inflexible {
-                Container(
-                    modifier = Height(33.dp), padding = EdgeInsets(0.dp, 3.dp, 0.dp, 0.dp)
-                ) {
-                    Clip(shape = RoundedCornerShape(30.dp)) {
-                        VectorImage(id = getFishImageForAlpha(idea.alpha))
-                    }
-                }
+
                 Text(
-                    text = "${ideDecor.getDisplayValueForAlpha()}",
+                    text = "φ   ${getRoundedValue(idea.benchMarkPerformance)}",
                     style = TextStyle(color = Color.White)
                 )
             }
